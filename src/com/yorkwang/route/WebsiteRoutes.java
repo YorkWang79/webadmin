@@ -1,14 +1,14 @@
 package com.yorkwang.route;
 
 import com.jfinal.config.Routes;
-import com.rimage.controller.*;
+import com.yorkwang.controller.*;
 
 public class WebsiteRoutes extends Routes {
 
     @Override
     public void config() {
         setBaseViewPath("/");
-
+        /*
         add("/", LoginController.class, "/login");
         add("/login", LoginController.class, "/login");
         add("/status", MDSStatusController.class, "/status");
@@ -33,7 +33,7 @@ public class WebsiteRoutes extends Routes {
         add("/admin/serversetting", ServerSettingController.class, "/admin");
         add("/admin/disksetting", DiskSettingController.class, "/admin");
         add("/admin/paramsetting", ParamSettingController.class, "/admin");
-        
+        */
 	}
 
 }

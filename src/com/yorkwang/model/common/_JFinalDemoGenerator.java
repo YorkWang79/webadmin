@@ -5,7 +5,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.rimage.config.RimageConfig;
+import com.yorkwang.config.WebsiteConfig;
 
 /**
  * Generator all DB model class
@@ -14,7 +14,7 @@ public class _JFinalDemoGenerator {
 	
 	public static DataSource getDataSource() {
 		PropKit.use("db_config.txt");
-		DruidPlugin druidPlugin = RimageConfig.createDruidPlugin();
+		DruidPlugin druidPlugin = WebsiteConfig.createDruidPlugin();
 		druidPlugin.start();
 		return druidPlugin.getDataSource();
 	}
