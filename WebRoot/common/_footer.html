@@ -1,0 +1,18 @@
+#if(tabIndex > 0 && tabIndex < 5)
+<div class="buttons_L">
+    #if(hasSettingButton(session.UserRole))
+        <input type="image" src="#(basePath)/#res("setting_icon")" onclick="location.href='#(basePath)/admin/'"/>
+    #end
+</div>
+<div class="buttons_R">
+    #if(hasPasswordModification(session.UserRole))
+    <input type="image" src="#(basePath)/#res("password_icon")" onclick="ShowPw('#(session.UserId)');"/>
+    #end
+</div>
+#elseif(tabIndex >= 5)
+<div class="buttons_L">
+    #if(hasSettingButton(session.UserRole) && session.UserNm!="superadmin")
+        <input type="image" src="#(basePath)/#res("back_icon")" onclick="location.href='#(basePath)/query/local'"/>
+    #end
+</div>
+#end

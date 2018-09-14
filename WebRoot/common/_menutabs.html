@@ -1,0 +1,104 @@
+#if(tabIndex > 0)
+<ul>
+#if(tabIndex < 4)
+<!-- Common Tabls -->
+    #if(hasStudyListPage(session.UserRole))
+      #if(tabIndex == 1)
+        <li class="tab1">
+            <img border="0" src="#(basePath)/#res("tab1-w")" />
+        </li>   
+      #else
+        <li>
+            <input type="image" src="#(basePath)/#res("tab1")" onclick="location.href='#(basePath)/query/local'"/>
+        </li>
+      #end
+    #end
+
+    #if(hasStudyListPage(session.UserRole))
+      #if(tabIndex == 2)
+        <li class="tab1">
+            <img border="0" src="#(basePath)/#res("tab1_1w")"/>
+        </li>
+      #else
+        <li>
+            <input type="image" src="#(basePath)/#res("tab1_1")" onclick="location.href='#(basePath)/query/pacs'"/>
+        </li>
+      #end
+    #end
+        
+    #if(hasProgressPage(session.UserRole))
+      #if(tabIndex == 3)
+        <li class="tab1">
+            <img border="0" src="#(basePath)/#res("tab2-w")"></img>
+        </li>
+      #else
+        <li>
+            <input type="image" src="#(basePath)/#res("tab2")" onclick="location.href='#(basePath)/job'"/>
+        </li>
+      #end
+    #end
+    
+    <!-- 
+    #if(hasHistoryPage(session.UserRole))
+      #if(tabIndex == 4)
+        <li class="tab1">
+            <img border="0" src="#(basePath)/#res("tab3-w")"></img>
+        </li>
+      #else
+        <li>
+            <input type="image" src="#(basePath)/#res("tab3")" onclick="location.href='#(basePath)/history'"/>
+        </li>
+      #end
+    #end
+     -->
+#else
+<!-- Admin Tabs -->
+    #if(hasAccountSettingPage(session.UserRole))
+      #if(tabIndex == 5)
+        <li class="li1">
+            <img border="0" src="#(basePath)/#res("admin_tab1-1")"/>
+        </li>
+      #else
+        <li class="li1">
+            <input type="image" src="#(basePath)/#res("admin_tab1-2")" onclick="location.href='#(basePath)/admin/accountsetting'"/>
+        </li>
+      #end
+    #end
+  
+    #if(hasServerSettingPage(session.UserRole))
+      #if(tabIndex == 6)
+        <li class="li1">
+            <img border="0" src="#(basePath)/#res("admin_tab2-1")"/>
+        </li>
+      #else
+        <li class="li1">
+            <input type="image" src="#(basePath)/#res("admin_tab2-2")" onclick="location.href='#(basePath)/admin/serversetting'"/>
+        </li>
+      #end
+    #end
+  
+    #if(hasLabelSettingPage(session.UserRole))
+      #if(tabIndex == 8)
+        <li class="li1">
+            <img border="0" src="#(basePath)/#res("admin_tab4-1")"/>
+        </li>
+      #else
+        <li class="li1">
+            <input type="image" src="#(basePath)/#res("admin_tab4-2")" onclick="location.href='#(basePath)/admin/labelsetting'"/>
+        </li>
+      #end
+    #end
+    #if(session.UserId=="superadmin")
+      #if(tabIndex == 9)
+        <li class="li1">
+            <img border="0" src="#(basePath)/img/param_setting_1.png"/>
+        </li>
+      #else
+        <li class="li1">
+            <input type="image" src="#(basePath)/img/param_setting_2.png" onclick="location.href='#(basePath)/admin/paramsetting'"/>
+        </li>
+      #end
+    #end
+#end
+</ul>
+#end

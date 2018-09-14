@@ -1,0 +1,47 @@
+#define paginate(currentPage, totalPage, jsmethod)
+	#if(totalPage <= 0 || currentPage > totalPage) #return #end
+	#setLocal(startPage = currentPage - 4)
+	#if (startPage < 1) #setLocal(startPage = 1) #end	
+	#setLocal(endPage = currentPage + 4)
+	#if (endPage > totalPage) #setLocal(endPage = totalPage) #end
+	<div class="pagination">
+			#if (currentPage <= 8)
+				#setLocal(startPage = 1)
+			#end
+			#if ((totalPage - currentPage) < 8)
+				#setLocal(endPage = totalPage)
+			#end
+			
+			#if (currentPage == 1)
+				<span class="disabled prev_page">&lt;</span>
+			#else
+				<a href="#" onclick="#(jsmethod)(#(currentPage - 1));return false;" class="prev_page">&lt;</a>
+			#end
+			
+			#if (currentPage > 8)
+				<a href="#" onclick="#(jsmethod)(#(1));return false;">#(1)</a>
+				<a href="#" onclick="#(jsmethod)(#(2));return false;">#(2)</a>
+				<span class="gap">...</span>
+			#end
+			
+			#for(i : [startPage..endPage])
+				#if (currentPage == i)
+					<span class="current">#(i)</span>
+				#else
+					<a href="#" onclick="#(jsmethod)(#(i));return false;">#(i)</a>
+				#end
+			#end
+			
+			#if ((totalPage - currentPage) >= 8)
+				<span class="gap">...</span>
+				<a href="#" onclick="#(jsmethod)(#(totalPage - 1));return false;">#(totalPage - 1)</a>
+				<a href="#" onclick="#(jsmethod)(#(totalPage));return false;">#(totalPage)</a>
+			#end
+			
+			#if (currentPage == totalPage)
+				<span class="disabled next_page">&gt;</span></span>
+			#else
+				<a href="#" onclick="#(jsmethod)(#(currentPage + 1));return false;" class="next_page" rel="next">&gt;</a>
+			#end
+	</div>
+#end
