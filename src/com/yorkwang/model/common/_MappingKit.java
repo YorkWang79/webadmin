@@ -15,6 +15,11 @@ import com.yorkwang.model.*;
 public class _MappingKit {
 
     public static void mapping(ActiveRecordPlugin arp) {
+        arp.addMapping("settings", "name", Setting.class);
+        arp.addMapping("user", "id", User.class);
+        arp.addMapping("company", "name", Company.class);
+        arp.addMapping("design", "id", Design.class);
+        arp.addMapping("picture", "id", Picture.class);
         /*
         //Study tables
         arp.addMapping("patient", "PAT_ID", Patient.class);

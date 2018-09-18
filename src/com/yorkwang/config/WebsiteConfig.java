@@ -41,7 +41,7 @@ public class WebsiteConfig extends JFinalConfig {
 		arg0.addSharedStaticMethod(StrKit.class);
         arg0.addSharedStaticMethod(PropKit.class);
 		
-        arg0.addSharedFunction("/common/_layout.html");
+        arg0.addSharedFunction("/common/_layout_admin.html");
         arg0.addSharedFunction("/common/_paginatejs.html");
 	}
 
@@ -52,7 +52,6 @@ public class WebsiteConfig extends JFinalConfig {
 
 	@Override
 	public void configInterceptor(Interceptors arg0) {
-		arg0.add(new I18nInterceptor());
 		arg0.add(new SessionInViewInterceptor());
 	}
 	

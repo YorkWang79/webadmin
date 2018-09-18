@@ -8,8 +8,9 @@ public class WebsiteRoutes extends Routes {
     @Override
     public void config() {
         setBaseViewPath("/");
+        
+        add("/admin", AdminPageController.class, "/admin");
         /*
-        add("/", LoginController.class, "/login");
         add("/login", LoginController.class, "/login");
         add("/status", MDSStatusController.class, "/status");
         add("/popup", PopupPanelController.class, "/popup");

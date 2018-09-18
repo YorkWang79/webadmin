@@ -1,0 +1,4 @@
+jdbcUrl = jdbc:mariadb://localhost/website
+user = root
+password = eKsy1RJw!
+devMode = true
