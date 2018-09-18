@@ -10,6 +10,7 @@ public class WebsiteRoutes extends Routes {
         setBaseViewPath("/");
         
         add("/admin", AdminPageController.class, "/admin");
+        add("/company", CompanyController.class, "/company");
         /*
         add("/login", LoginController.class, "/login");
         add("/status", MDSStatusController.class, "/status");

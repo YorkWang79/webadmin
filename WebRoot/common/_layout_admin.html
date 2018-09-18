@@ -1,4 +1,4 @@
-#define layout()
+#define layout_admin()
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
@@ -20,7 +20,7 @@
   #include("_slider_admin.html")
   
   <div class="layui-body">
-    <div style="padding: 15px;">内容主体</div>
+    <div style="padding: 15px;" id="main"></div>
   </div>
   
   <div class="layui-footer">
@@ -36,6 +36,8 @@
         var layer = layui.layer;
         var form = layui.form;
         var element = layui.element;
+        var upload = layui.upload;
+        
         #@js?()
     </script>
 </body>
