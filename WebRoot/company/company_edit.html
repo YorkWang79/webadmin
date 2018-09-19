@@ -11,6 +11,33 @@
             <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="company_pics">简介图片</button>
+        <label id="company_desc_upload_result" class="layui-bg-red"></label>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
+            <div class="layui-upload-list" id="company_pics_demo">
+                <table class="layui-table">
+                    <thead>
+                        <tr><th>文件名</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                        </tr></thead>
+                    <tbody id="company_pics_list">
+                    #for(pic : company_pics)
+                        <tr id="uploaded-#(pic.id)">
+                            <td><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></td>
+                            <td></td>
+                            <td>
+                                <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_company_pic(#(pic.id))">删除</button>
+                            </td>
+                        </tr>
+                    #end
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="layui-btn" id="company_pics_upload">上传</button>
+        </blockquote>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>

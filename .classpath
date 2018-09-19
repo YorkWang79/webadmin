@@ -5,9 +5,12 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/druid-1.0.29.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ehcache-core-2.6.11.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-3.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-3.2.jar" sourcepath="D:/dev_tools/jfinal/jfinal-3.2-src.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mariadb-java-client-1.7.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/cos-2017.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-jdk14-1.6.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/fastjson-1.2.31.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

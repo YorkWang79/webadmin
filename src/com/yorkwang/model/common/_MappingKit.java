@@ -20,6 +20,7 @@ public class _MappingKit {
         arp.addMapping("company", "name", Company.class);
         arp.addMapping("design", "id", Design.class);
         arp.addMapping("picture", "id", Picture.class);
+        arp.addMapping("uploadimage", "id", UploadImage.class);
         /*
         //Study tables
         arp.addMapping("patient", "PAT_ID", Patient.class);
