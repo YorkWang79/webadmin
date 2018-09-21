@@ -12,7 +12,7 @@ public class WebsiteRoutes extends Routes {
         add("/admin", AdminPageController.class, "/admin");
         add("/company", CompanyController.class, "/company");
         
-        add("/upload", UploadController.class);
+        add("/upload", UploadController.class, "/pics");
         /*
         add("/login", LoginController.class, "/login");
         add("/status", MDSStatusController.class, "/status");

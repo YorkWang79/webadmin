@@ -1,0 +1,18 @@
+<table class="layui-table">
+    <tbody id="company_pics_list">
+        #for(pic : pic_list)
+            #if(for.index % 4 == 0)
+                <tr>
+            #end
+            <td id="uploaded-#(pic.id)" align="center">
+                <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
+                <div>
+                    <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_pic(#(pic.id));">删除</button>
+                </div>
+            </td>
+            #if(for.index % 4 == 6)
+                </tr>
+            #end
+        #end
+    </tbody>
+</table>
