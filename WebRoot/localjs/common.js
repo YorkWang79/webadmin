@@ -20,7 +20,7 @@ function company_edit() {
     });
 }
 
-function init_pic_upload() {
+function init_company_upload() {
 
 }
 
@@ -78,17 +78,17 @@ function init_pic_upload() {
                 */
                 delete this.files[index];
                 if(Object.keys(this.files).length == 0) {
-                    load_pic_library();
+                    load_pic_library(1);
                 }
                 return;
             }
             this.error(index, upload);
         }
         ,error: function(index, upload){
-            var tr = picList.find('tr#upload-'+ index)
-            ,tds = tr.children();
-            tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
-            tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
+//            var tr = picList.find('tr#upload-'+ index)
+//            ,tds = tr.children();
+//            tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
+//            tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
         }
     });
 }
@@ -107,17 +107,23 @@ function delete_pic(id) {
             alert("delete company pic error!");
         },
         success: function(response) {
-            load_pic_library();
+            load_pic_library(1);
             return false;
         }
     });
 }
 
-function load_pic_library() {
+/**
+ * type:
+ * 1: upload pics library page
+ * 2: using pics library for selection
+ * @return
+ */
+function load_pic_library(type) {
     $.ajax({
         url: '#(basePath)/upload/loadpics',
         type: "POST", 
-        data: {},
+        data: {type: type},
         async: false,
         beforeSend : function(xhr) {
         },
@@ -127,8 +133,22 @@ function load_pic_library() {
             alert("load company pic error!");
         },
         success: function(response) {
-            $("#company_pics_libaray").empty();
-            $("#company_pics_libaray").html(response);
+            if(type == 1) {
+                $("#company_pics_libaray").empty();
+                $("#company_pics_libaray").html(response);
+            }
+            if(type == 2) {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    skin: 'layui-layer-lan',
+                    area: '600px',
+                    content: response,
+                  });
+                form.render();
+            }
             return false;
         }
     });
@@ -150,7 +170,6 @@ function pic_lib_page() {
             $("#main").empty();
             $("#main").html(response);
             init_pic_upload();
-            load_pic_library();
          }
     });
 }

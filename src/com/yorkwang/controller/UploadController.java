@@ -11,6 +11,8 @@ import com.yorkwang.service.UploadImageService;
 
 public class UploadController extends Controller {
     public void index() {
+        this.setAttr("pic_list", UploadImageService.getUploadImages(UploadImage.TYPE_COMPANY_INFO));
+        
         this.render("pics.html");
     }
     
@@ -43,6 +45,7 @@ public class UploadController extends Controller {
     }
     
     public void loadpics() {
+        this.setAttr("type", getPara("type"));
         this.setAttr("pic_list", UploadImageService.getUploadImages(UploadImage.TYPE_COMPANY_INFO));
         
         this.render("pic_list.html");

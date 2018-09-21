@@ -3,7 +3,24 @@
         <button type="button" class="layui-btn" id="company_pics">上传图片</button>
         <label id="company_desc_upload_result" class="layui-bg-red"></label>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">图片库
-            <div class="layui-upload-list" id="company_pics_libaray"></div>
+            <div class="layui-upload-list" id="company_pics_libaray">
+                <div class="layui-fluid" style="margin:5px;">
+                    #for(pic : pic_list)
+                        #if(for.index % 4 == 0)
+                    <div class="layui-row">
+                        #end
+                        <div class="layui-col-md3" style="text-align:center;">
+                            <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
+                            <div>
+                                <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_pic(#(pic.id));">删除</button>
+                            </div>
+                        </div>
+                        #if(for.index % 4 == 3)
+                    </div>
+                        #end
+                    #end
+                </div>
+            </div>
         </blockquote>
     </div>
 </form>

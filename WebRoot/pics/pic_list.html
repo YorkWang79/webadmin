@@ -1,8 +1,32 @@
+<form class="layui-form" action="">
+<div class="layui-fluid" style="margin:5px;">
+    #for(pic : pic_list)
+        #if(for.index % 4 == 0)
+        <div class="layui-row">
+        #end
+            <div class="layui-col-md3" style="text-align:center;">
+                <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="img_selection" id="img_#(pic.id)" title="选择" value="#(pic.id)" lay-skin="switch"/>
+                </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">开关</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="switch" lay-skin="switch">
+    </div>
+  </div>
+            </div>
+        #if(for.index % 4 == 3)
+        </div>
+        #end
+    #end
+</div>
+<!-- 
 <table class="layui-table">
     <tbody id="company_pics_list">
         #for(pic : pic_list)
             #if(for.index % 4 == 0)
-                <tr>
+            <tr>
             #end
             <td id="uploaded-#(pic.id)" align="center">
                 <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
@@ -11,8 +35,10 @@
                 </div>
             </td>
             #if(for.index % 4 == 6)
-                </tr>
+            </tr>
             #end
         #end
     </tbody>
 </table>
+ -->
+ </form>
