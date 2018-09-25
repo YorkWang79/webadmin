@@ -5,40 +5,24 @@
         <div class="layui-row">
         #end
             <div class="layui-col-md3" style="text-align:center;">
-                <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="img_selection" id="img_#(pic.id)" title="选择" value="#(pic.id)" lay-skin="switch"/>
+                <div class="layui-upload-img-margin">
+                    <img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img" onclick="sync_image_selection(#(pic.id), #(type))" />
+                    #if(type == 2)
+                    <input type="radio" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' />
+                    #end
+                    #if(type == 3)
+                    <input type="checkbox" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' />
+                    #end
                 </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">开关</label>
-    <div class="layui-input-block">
-      <input type="checkbox" name="switch" lay-skin="switch">
-    </div>
-  </div>
             </div>
-        #if(for.index % 4 == 3)
+        #if(for.index % 4 == 3 || for.index == for.size-1)
         </div>
         #end
     #end
+    <div class="layui-form-item">
+        <div style="text-align:center;">
+            <button class="layui-btn" lay-submit lay-filter="picCompanySave">保存</button>
+        </div>
+    </div>
 </div>
-<!-- 
-<table class="layui-table">
-    <tbody id="company_pics_list">
-        #for(pic : pic_list)
-            #if(for.index % 4 == 0)
-            <tr>
-            #end
-            <td id="uploaded-#(pic.id)" align="center">
-                <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
-                <div>
-                    <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_pic(#(pic.id));">删除</button>
-                </div>
-            </td>
-            #if(for.index % 4 == 6)
-            </tr>
-            #end
-        #end
-    </tbody>
-</table>
- -->
- </form>
+</form>

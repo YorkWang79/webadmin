@@ -8,6 +8,7 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.upload.UploadFile;
 import com.yorkwang.model.UploadImage;
 import com.yorkwang.service.UploadImageService;
+import com.yorkwang.utils.Utils;
 
 public class UploadController extends Controller {
     public void index() {
@@ -45,7 +46,7 @@ public class UploadController extends Controller {
     }
     
     public void loadpics() {
-        this.setAttr("type", getPara("type"));
+        this.setAttr("type", Utils.getIntParaValue(this, "type"));
         this.setAttr("pic_list", UploadImageService.getUploadImages(UploadImage.TYPE_COMPANY_INFO));
         
         this.render("pic_list.html");

@@ -116,10 +116,11 @@ function delete_pic(id) {
 /**
  * type:
  * 1: upload pics library page
- * 2: using pics library for selection
+ * 2: using pics library for single selection
+ * 3: using pics library for multiple selection
  * @return
  */
-function load_pic_library(type) {
+function load_pic_library(type, index) {
     $.ajax({
         url: '#(basePath)/upload/loadpics',
         type: "POST", 
@@ -137,17 +138,26 @@ function load_pic_library(type) {
                 $("#company_pics_libaray").empty();
                 $("#company_pics_libaray").html(response);
             }
-            if(type == 2) {
-                layer.open({
+            if(type == 2 || type == 3) {
+                var layer_index = layer.open({
                     type: 1,
-                    title: false,
-                    closeBtn: 0,
+                    title: '图片库',
+                    closeBtn: 1,
                     shadeClose: true,
                     skin: 'layui-layer-lan',
                     area: '600px',
                     content: response,
                   });
                 form.render();
+                form.on('submit(picCompanySave)', function(data){
+                    alert("team:" + index);
+                    if(type == 2)
+                        save_team_pic(index);
+                    if(type == 3)
+                        save_company_pic();
+                    layer.close(layer_index);
+                    return false;
+                });
             }
             return false;
         }
@@ -172,4 +182,42 @@ function pic_lib_page() {
             init_pic_upload();
          }
     });
+}
+
+function save_company_pic() {
+    //var company_name = $("#company_name").val();
+    //var desc = $("#desc").val();
+    var selection = "";
+    $('#company_pics_demo').empty();
+    $("input:checkbox[name='img_selection']:checked").each(function() {
+        var pic_str = $(this).val();
+        var pic_obj = JSON.parse(pic_str);
+        selection += ',' + pic_obj.id;
+        $('#company_pics_demo').append('<img src="#(basePath)/upload/'+ pic_obj.path +'" class="layui-upload-img">');
+    });
+    $("#company_pics_ids").val(selection);
+}
+
+function save_team_pic(index) {
+    var selection = "";
+    $('#company_pic' + index + '_demo').empty();
+    $("input:radio[name='img_selection']:checked").each(function() {
+        var pic_str = $(this).val();
+        var pic_obj = JSON.parse(pic_str);
+        selection = pic_obj.id;
+        $('#company_pic' + index + '_demo').append('<img src="#(basePath)/upload/'+ pic_obj.path +'" class="layui-upload-img">');
+    });
+    $("#company_pic" + index + "_id").val(selection);
+}
+
+function sync_image_selection(id, type) {
+    var img_checkbox = $("#img_selection_" + id);
+    if(type == 2) {
+        img_checkbox.prop("checked", true);
+        form ? form.render("radio") : null;
+    }
+    if(type == 3) {
+        img_checkbox.prop("checked", !img_checkbox.prop("checked"));
+        form ? form.render("checkbox") : null;
+    }
 }

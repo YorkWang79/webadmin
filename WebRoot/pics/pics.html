@@ -9,8 +9,10 @@
                         #if(for.index % 4 == 0)
                     <div class="layui-row">
                         #end
-                        <div class="layui-col-md3" style="text-align:center;">
-                            <div><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></div>
+                        <div class="layui-col-md3 layui-upload-img-margin" style="text-align:center;">
+                            <div>
+                                <img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img">
+                            </div>
                             <div>
                                 <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_pic(#(pic.id));">删除</button>
                             </div>

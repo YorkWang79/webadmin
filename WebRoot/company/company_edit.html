@@ -12,10 +12,32 @@
         </div>
     </div>
     <div class="layui-upload">
-        <button type="button" class="layui-btn" id="company_pics" onclick="load_pic_library(2);">选择简介图片</button>
+        <button type="button" class="layui-btn" id="company_pics" onclick="load_pic_library(3);">选择简介图片</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
             <div class="layui-upload-list" id="company_pics_demo"></div>
         </blockquote>
+        <input type="hidden" id="company_pics_ids" />
+    </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="company_pic1" onclick="load_pic_library(2, 1);">团队照片1</button>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
+            <div class="layui-upload-list" id="company_pic1_demo"></div>
+        </blockquote>
+        <input type="hidden" id="company_pic1_id" />
+    </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="company_pic2" onclick="load_pic_library(2, 2);">团队照片2</button>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
+            <div class="layui-upload-list" id="company_pic2_demo"></div>
+        </blockquote>
+        <input type="hidden" id="company_pic2_id" />
+    </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="company_pic3" onclick="load_pic_library(2, 3);">团队照片3</button>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
+            <div class="layui-upload-list" id="company_pic3_demo"></div>
+        </blockquote>
+        <input type="hidden" id="company_pic3_id" />
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
