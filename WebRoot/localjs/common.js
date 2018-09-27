@@ -16,6 +16,30 @@ function company_edit() {
             $("#main").html(response);
             init_company_upload();
             load_company_pic();
+            form.on('submit(formCompany)', function(data){
+                alert(JSON.stringify(data.field));
+                $.ajax({
+                    url: '#(basePath)/company/save',
+                    type: "POST", 
+                    data: data.field,
+                    async: false,
+                    beforeSend : function(xhr) {
+                    },
+                    complete: function(xhr) {
+                    },
+                    error: function(xhr) {
+                        alert("save company info error!");
+                    },
+                    success: function(response) {
+                        if(response == "false")
+                            layer.alert("保存失败");
+                        else
+                            layer.alert("保存成功");
+                        return false;
+                    }
+                });
+                return false;
+            });
          }
     });
 }
@@ -150,7 +174,6 @@ function load_pic_library(type, index) {
                   });
                 form.render();
                 form.on('submit(picCompanySave)', function(data){
-                    alert("team:" + index);
                     if(type == 2)
                         save_team_pic(index);
                     if(type == 3)
@@ -195,6 +218,8 @@ function save_company_pic() {
         selection += ',' + pic_obj.id;
         $('#company_pics_demo').append('<img src="#(basePath)/upload/'+ pic_obj.path +'" class="layui-upload-img">');
     });
+    if(selection.length != 0)
+        selection = selection.slice(1);
     $("#company_pics_ids").val(selection);
 }
 
