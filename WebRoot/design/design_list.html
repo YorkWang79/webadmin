@@ -1,0 +1,38 @@
+<div class="layui-row">
+    <div class="layui-md-6 layui-align-left">
+        <label class="layui-form-label"><strong>#(year)</strong></label>
+    </div>
+    <div class="layui-md-6 layui-align-right">
+        <button class="layui-btn" lay-submit onclick="show_design_info(#(year), 'new');">新建</button>
+    </div>
+</div>
+<table class="layui-table" lay-even lay-skin="line" lay-size="lg">
+    <colgroup>
+        <col width="150">
+        <col>
+        <col width="150">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>预览图</th>
+            <th>&nbsp;</th>
+        </tr> 
+    </thead>
+    <tbody>
+        #for(d : designs)
+        <tr>
+            <td>#(d.title)</td>
+            <td>
+                #for(path : d.paths)
+                    <img src="#(basePath)/upload/#(path)" class="layui-upload-img">
+                #end
+            </td>
+            <td>
+                <button class="layui-btn" lay-submit lay-filter="designEdit">编辑</button>
+                <button class="layui-btn" lay-submit lay-filter="designEdit">删除</button>
+            </td>
+        </tr>
+        #end
+    </tbody>
+</table>

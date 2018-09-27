@@ -1,0 +1,34 @@
+<div class="layui-popup-div-margin">
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <input type="hidden" name="year" id="year" value="#(year)" />
+        <label class="layui-form-label">项目名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="design_title" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="#(title)">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">项目描述</label>
+        <div class="layui-input-block">
+            <textarea name="design_desc" placeholder="" class="layui-textarea">#(desc)</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-upload">
+        <button type="button" class="layui-btn" id="design_pics" onclick="load_pic_library(1, 0, '#(design_pics_path)');">选择简介图片</button>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
+            <div class="layui-upload-list" id="design_pics_demo">
+                #for(p : design_pics)
+                <img src="#(basePath)/upload/#(p)" class="layui-upload-img">
+                #end
+            </div>
+        </blockquote>
+        <input type="hidden" name="design_pics_ids" id="design_pics_ids" />
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-align-center">
+            <button class="layui-btn" lay-submit lay-filter="formDesignSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</div>

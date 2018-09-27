@@ -5,5 +5,21 @@
 }
 
 .layui-upload-img-margin {
-    margin: 0 10px 10px 0;
+    margin: 10px 0 10px 0;
+}
+
+.layui-popup-div-margin {
+    margin: 10px 10px 10px 10px;
+}
+
+.layui-align-center {
+    text-align: center;
+}
+
+.layui-align-left {
+    text-align: left;
+}
+
+.layui-align-right {
+    text-align: right;
 }

@@ -1,10 +1,9 @@
-
-                    #for(pic : company_pics)
-                        <tr id="uploaded-#(pic.id)">
-                            <td><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></td>
-                            <td>上传成功</td>
-                            <td>
-                                <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_company_pic(#(pic.id))">删除</button>
-                            </td>
-                        </tr>
-                    #end
+#for(pic : company_pics)
+    <tr id="uploaded-#(pic.id)">
+        <td><img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img"></td>
+        <td>上传成功</td>
+        <td>
+            <button class="layui-btn layui-btn-xs layui-btn-danger upload-delete" onclick="delete_company_pic(#(pic.id))">删除</button>
+        </td>
+    </tr>
+#end

@@ -246,3 +246,59 @@ function sync_image_selection(id, type) {
         form ? form.render("checkbox") : null;
     }
 }
+
+function load_design(year) {
+    $.ajax({
+        url: '#(basePath)/design/list',
+        type: "POST", 
+        data: {year: year},
+        beforeSend : function(xhr) {
+        },
+        complete: function(xhr) {
+        },
+        error: function(xhr) {
+            alert("load design error!");
+        },
+        success: function(response) {
+            $("#main").empty();
+            $("#main").html(response);
+         }
+    });
+}
+
+function show_design_info(year, type) {
+    $.ajax({
+        url: '#(basePath)/design/info',
+        type: "POST", 
+        data: {year: year, type: type},
+        async: false,
+        beforeSend : function(xhr) {
+        },
+        complete: function(xhr) {
+        },
+        error: function(xhr) {
+            alert("new design error!");
+        },
+        success: function(response) {
+            var layer_index = layer.open({
+                type: 1,
+                title: '项目信息',
+                closeBtn: 1,
+                shadeClose: true,
+                skin: 'layui-layer-lan',
+                area: ['700px', '450px'],
+                content: response,
+              });
+            form.render();
+            form.on('submit(formDesignSave)', function(data){
+                if(type == 'new')
+                    alert('new');
+                if(type == 'edit')
+                    alert('edit');
+                layer.close(layer_index);
+                return false;
+            });
+            return false;
+         }
+    });
+}

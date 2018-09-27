@@ -11,6 +11,7 @@ public class WebsiteRoutes extends Routes {
         
         add("/admin", AdminPageController.class, "/admin");
         add("/company", CompanyController.class, "/company");
+        add("/design", DesignController.class, "/design");
         
         add("/upload", UploadController.class, "/pics");
         /*

@@ -1,10 +1,12 @@
-#Thu Sep 20 15:09:16 CST 2018
+#Thu Sep 27 15:54:46 CST 2018
 eclipse.preferences.version=1
 encoding//WebRoot/common/_header_admin.html=UTF-8
 encoding//WebRoot/common/_layout_admin.html=UTF-8
 encoding//WebRoot/common/_slider_admin.html=UTF-8
 encoding//WebRoot/company/company_edit.html=UTF-8
 encoding//WebRoot/company/company_upload_table.html=UTF-8
+encoding//WebRoot/design/design_info.html=UTF-8
+encoding//WebRoot/design/design_list.html=UTF-8
 encoding//WebRoot/pics/pic_list.html=UTF-8
 encoding//WebRoot/pics/pics.html=UTF-8
 encoding/<project>=UTF-8

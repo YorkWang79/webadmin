@@ -16,6 +16,4 @@ public class UploadImage extends Model<UploadImage>{
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-    
-    
 }
