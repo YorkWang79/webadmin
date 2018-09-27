@@ -8,10 +8,10 @@
                 <div class="layui-upload-img-margin">
                     <img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img" onclick="sync_image_selection(#(pic.id), #(type))" />
                     #if(type == 2)
-                    <input type="radio" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' />
+                    <input type="radio" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' #if(pic.selected) checked #end />
                     #end
                     #if(type == 3)
-                    <input type="checkbox" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' />
+                    <input type="checkbox" name="img_selection" id="img_selection_#(pic.id)" lay-skin="primary" title="选择" value='{"id":"#(pic.id)","path":"#(pic.path)"}' #if(pic.selected) checked #end />
                     #end
                 </div>
             </div>

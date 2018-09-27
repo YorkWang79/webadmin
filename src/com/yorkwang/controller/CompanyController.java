@@ -5,6 +5,7 @@ import com.jfinal.kit.StrKit;
 import com.yorkwang.model.Company;
 import com.yorkwang.model.UploadImage;
 import com.yorkwang.service.UploadImageService;
+import com.yorkwang.utils.Utils;
 
 public class CompanyController extends Controller {
     
@@ -14,7 +15,10 @@ public class CompanyController extends Controller {
         if(company != null) {
             this.setAttr("name", company.getStr("name"));
             this.setAttr("desc", company.getStr("desc"));
-            this.setAttr("company_pics", UploadImageService.getCompanyImagesString(company.getStr("pics")));
+            String[] pics = UploadImageService.getCompanyImagesString(company.getStr("pics"));
+            this.setAttr("company_pics", pics);
+            String picsStr = Utils.getArrayString(pics);
+            this.setAttr("company_pics_path", picsStr);
             UploadImage pic1 = UploadImageService.getCompanyImage(company.getStr("team_pic1"));
             if(pic1 != null)
                 this.setAttr("pic1", pic1.get("path"));

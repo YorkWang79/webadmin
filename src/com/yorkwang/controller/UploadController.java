@@ -47,7 +47,17 @@ public class UploadController extends Controller {
     
     public void loadpics() {
         this.setAttr("type", Utils.getIntParaValue(this, "type"));
-        this.setAttr("pic_list", UploadImageService.getUploadImages(UploadImage.TYPE_COMPANY_INFO));
+        String selected_data = getPara("selected_data");
+        List<UploadImage> list = UploadImageService.getUploadImages(UploadImage.TYPE_COMPANY_INFO);
+        for (UploadImage uploadImage : list) {
+            System.out.println("selected_data:" + selected_data);
+            System.out.println("path:" + uploadImage.getStr("path"));
+            System.out.println("result:" + selected_data.indexOf(uploadImage.getStr("path")));
+            if(selected_data.indexOf(uploadImage.getStr("path")) != -1) {
+                uploadImage.setSelected(true);
+            }
+        }
+        this.setAttr("pic_list", list);
         
         this.render("pic_list.html");
     }

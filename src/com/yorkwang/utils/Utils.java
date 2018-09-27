@@ -355,4 +355,14 @@ public class Utils {
         String paraValue = controller.getPara(name);
         return StrKit.isBlank(paraValue) ? 0 : Integer.parseInt(paraValue);
     }
+    
+    public static String getArrayString(String[] arr) {
+        StringBuffer sb = new StringBuffer();
+        for (String str : arr) {
+            sb.append(str);
+            sb.append(",");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
 }

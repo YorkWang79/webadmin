@@ -144,11 +144,11 @@ function delete_pic(id) {
  * 3: using pics library for multiple selection
  * @return
  */
-function load_pic_library(type, index) {
+function load_pic_library(type, index, selected_data) {
     $.ajax({
         url: '#(basePath)/upload/loadpics',
         type: "POST", 
-        data: {type: type},
+        data: {type: type, selected_data: selected_data},
         async: false,
         beforeSend : function(xhr) {
         },
