@@ -19,7 +19,6 @@ public class _MappingKit {
         arp.addMapping("user", "id", User.class);
         arp.addMapping("company", "name", Company.class);
         arp.addMapping("design", "id", Design.class);
-        arp.addMapping("picture", "id", Picture.class);
         arp.addMapping("uploadimage", "id", UploadImage.class);
         /*
         //Study tables

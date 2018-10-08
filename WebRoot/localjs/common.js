@@ -14,8 +14,6 @@ function company_edit() {
         success: function(response) {
             $("#main").empty();
             $("#main").html(response);
-            init_company_upload();
-            load_company_pic();
             form.on('submit(formCompany)', function(data){
                 alert(JSON.stringify(data.field));
                 $.ajax({
@@ -44,15 +42,7 @@ function company_edit() {
     });
 }
 
-function init_company_upload() {
-
-}
-
-function load_company_pic() {
-
-}
-
-function init_pic_upload() {
+function init_pic_upload1() {
     var picList = $("#company_pics_list");
     var uploadListIns = upload.render({
         elem: '#company_pics'
@@ -117,6 +107,35 @@ function init_pic_upload() {
     });
 }
 
+function init_pic_upload(upload_obj_id, preview_obj_id, is_multiple) {
+    var previewObj = $("#" + preview_obj_id + ");
+    var uploadListIns = upload.render({
+        elem: '#' + upload_obj_id
+        ,url: '#(basePath)/upload/uploadimages'
+        ,multiple: is_multiple
+        //,auto: false
+        //,bindAction: '#upload_button'
+        ,choose: function(obj){
+            var files = this.files = obj.pushFile();
+            obj.preview(function(index, file, result){
+                previewObj.append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+            });
+        }
+        ,done: function(res, index, upload){
+            if(res.code == 0){
+                delete this.files[index];
+                if(Object.keys(this.files).length == 0) {
+                    load_pic_library(1);
+                }
+                return;
+            }
+            this.error(index, upload);
+        }
+        ,error: function(index, upload){
+        }
+    });
+}
+
 function delete_pic(id) {
     $.ajax({
         url: '#(basePath)/upload/deletepic',
@@ -142,6 +161,7 @@ function delete_pic(id) {
  * 1: upload pics library page
  * 2: using pics library for single selection
  * 3: using pics library for multiple selection
+ * 4: upload pics of design
  * @return
  */
 function load_pic_library(type, index, selected_data) {
@@ -162,7 +182,7 @@ function load_pic_library(type, index, selected_data) {
                 $("#company_pics_libaray").empty();
                 $("#company_pics_libaray").html(response);
             }
-            if(type == 2 || type == 3) {
+            if(type == 2 || type == 3 || type == 4) {
                 var layer_index = layer.open({
                     type: 1,
                     title: '图片库',
@@ -178,6 +198,11 @@ function load_pic_library(type, index, selected_data) {
                         save_team_pic(index);
                     if(type == 3)
                         save_company_pic();
+                    layer.close(layer_index);
+                    return false;
+                });
+                form.on('submit(formDesignSave)', function(data){
+                    save_design_pic();
                     layer.close(layer_index);
                     return false;
                 });
@@ -301,4 +326,8 @@ function show_design_info(year, type) {
             return false;
          }
     });
+}
+
+function save_design_pic() {
+    alert("save design");
 }
