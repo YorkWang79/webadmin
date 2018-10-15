@@ -20,6 +20,8 @@ public class CompanyController extends Controller {
             String picsStr = Utils.getArrayString(pics);
             this.setAttr("company_pics_path", picsStr);
             UploadImage pic1 = UploadImageService.getCompanyImage(company.getStr("team_pic1"));
+            System.out.println("pic1 id:" + company.getStr("team_pic1"));
+            System.out.println("pic1:" + pic1);
             if(pic1 != null)
                 this.setAttr("pic1", pic1.get("path"));
             UploadImage pic2 = UploadImageService.getCompanyImage(company.getStr("team_pic2"));
@@ -36,10 +38,10 @@ public class CompanyController extends Controller {
     public void save() {
         String name = getPara("company_name");
         String desc = getPara("desc");
-        String pics = getPara("company_pics_ids");
-        String pic1 = getPara("company_pic1_id");
-        String pic2 = getPara("company_pic2_id");
-        String pic3 = getPara("company_pic3_id");
+        String pics = UploadImageService.getCompanyImagesId(getPara("company_pic_id1"));
+        String pic1 = UploadImageService.getCompanyImagesId(getPara("company_pic_id2"));
+        String pic2 = UploadImageService.getCompanyImagesId(getPara("company_pic_id3"));
+        String pic3 = UploadImageService.getCompanyImagesId(getPara("company_pic_id4"));
         
         boolean result = false;
         Company company = Company.dao.findById(name);

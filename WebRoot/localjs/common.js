@@ -14,6 +14,12 @@ function company_edit() {
         success: function(response) {
             $("#main").empty();
             $("#main").html(response);
+            
+            init_pic_upload(1, 1, true);
+            init_pic_upload(1, 2, false);
+            init_pic_upload(1, 3, false);
+            init_pic_upload(1, 4, false);
+            
             form.on('submit(formCompany)', function(data){
                 alert(JSON.stringify(data.field));
                 $.ajax({
@@ -107,15 +113,21 @@ function init_pic_upload1() {
     });
 }
 
-function init_pic_upload(upload_obj_id, preview_obj_id, is_multiple) {
-    var previewObj = $("#" + preview_obj_id + ");
+function init_pic_upload(type, id_index, is_multiple) {
+    var upload_obj_id = "company_pic";
+    var preview_obj_id = "company_pic_demo";
+    var previewObj = $("#" + preview_obj_id + id_index);
     var uploadListIns = upload.render({
-        elem: '#' + upload_obj_id
+        elem: '#' + upload_obj_id + id_index
         ,url: '#(basePath)/upload/uploadimages'
         ,multiple: is_multiple
+        ,data: {type: type}
         //,auto: false
         //,bindAction: '#upload_button'
         ,choose: function(obj){
+            if(this.files == null || typeof(this.files)=='undefined' || Object.keys(this.files).length == 0) {
+                previewObj.empty();
+            }
             var files = this.files = obj.pushFile();
             obj.preview(function(index, file, result){
                 previewObj.append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
@@ -123,15 +135,20 @@ function init_pic_upload(upload_obj_id, preview_obj_id, is_multiple) {
         }
         ,done: function(res, index, upload){
             if(res.code == 0){
+                if(is_multiple) {
+                    var ids = $("#company_pic_id"+id_index).val();
+                    $("#company_pic_id"+id_index).val(ids+","+this.files[index].name);
+                } else
+                    $("#company_pic_id"+id_index).val(this.files[index].name);
                 delete this.files[index];
-                if(Object.keys(this.files).length == 0) {
-                    load_pic_library(1);
-                }
                 return;
             }
-            this.error(index, upload);
+        }
+        ,allDone: function(obj){
+            return;
         }
         ,error: function(index, upload){
+            this.error(index, upload);
         }
     });
 }
@@ -156,6 +173,43 @@ function delete_pic(id) {
     });
 }
 
+function load_pics_company(type, id_index) {
+    var preview_obj_id = "company_pic_demo";
+//    $.ajax({
+//        url: '#(basePath)/upload/refactorpics',
+//        type: "POST", 
+//        data: {type: type},
+//        async: false,
+//        beforeSend : function(xhr) {
+//        },
+//        complete: function(xhr) {
+//        },
+//        error: function(xhr) {
+//            alert("refact company pic error!");
+//        },
+//        success: function(response) {
+            $.ajax({
+                url: '#(basePath)/upload/loadpics',
+                type: "POST", 
+                data: {type: type},
+                async: false,
+                beforeSend : function(xhr) {
+                },
+                complete: function(xhr) {
+                },
+                error: function(xhr) {
+                    alert("load company pic error!");
+                },
+                success: function(response) {
+                    $("#" + preview_obj_id + id_index).empty();
+                    $("#" + preview_obj_id + id_index).html(response);
+                    return false;
+                }
+            });
+//        }
+//    });
+}
+
 /**
  * type:
  * 1: upload pics library page
@@ -164,7 +218,7 @@ function delete_pic(id) {
  * 4: upload pics of design
  * @return
  */
-function load_pic_library(type, index, selected_data) {
+function load_pic_library1(type, index, selected_data) {
     $.ajax({
         url: '#(basePath)/upload/loadpics',
         type: "POST", 
@@ -212,6 +266,7 @@ function load_pic_library(type, index, selected_data) {
     });
 }
 
+/*
 function pic_lib_page() {
     $.ajax({
         url: '#(basePath)/upload/',
@@ -231,6 +286,7 @@ function pic_lib_page() {
          }
     });
 }
+*/
 
 function save_company_pic() {
     //var company_name = $("#company_name").val();

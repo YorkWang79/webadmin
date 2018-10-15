@@ -4,8 +4,9 @@ import com.jfinal.plugin.activerecord.Model;
 
 public class UploadImage extends Model<UploadImage>{
     public static final UploadImage dao = new UploadImage().dao();
-    
+
     public static final int TYPE_COMPANY_INFO = 1;
+    public static final int TYPE_TEMP = -1;
     
     private boolean selected = false;
 

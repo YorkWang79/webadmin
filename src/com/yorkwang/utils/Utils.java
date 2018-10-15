@@ -214,6 +214,26 @@ public class Utils {
     }
     
     /**
+     * Join string with character
+     * @param join
+     * @param strAry
+     * @return
+     */
+    public static String join(String join,Object[] strAry){
+        StringBuffer sb=new StringBuffer();
+        for(int i=0;i<strAry.length;i++){
+            if(strAry[i] != null && StrKit.notBlank(strAry[i].toString())) {
+             if(i==(strAry.length-1)){
+                 sb.append(strAry[i].toString());
+             }else{
+                 sb.append(strAry[i].toString()).append(join);
+             }
+            }
+        }
+        return new String(sb);
+    }
+    
+    /**
      * Get dicom format patient name
      * @param s
      * @return

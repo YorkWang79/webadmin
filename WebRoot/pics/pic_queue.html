@@ -1,0 +1,6 @@
+<div class="layui-upload-list" style="margin:5px;">
+    #for(pic : pic_list)
+        <img src="#(basePath)/upload/#(pic.path)" alt="#(pic.path)" class="layui-upload-img" onclick="sync_image_selection(#(pic.id), #(type))" />
+    #end
+    <input type="hidden" name="company_pic_id#(type)" id="company_pic_id#(type)" value="#(path_list)" />
+</div>

@@ -7,7 +7,9 @@ import java.util.List;
 
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
+import com.jfinal.template.expr.ast.Array;
 import com.yorkwang.model.UploadImage;
+import com.yorkwang.utils.Utils;
 
 public class UploadImageService {
     private static HashMap<Integer, UploadImage> pic_map = new HashMap<Integer, UploadImage>();
@@ -19,7 +21,7 @@ public class UploadImageService {
         return UploadImage.dao.find("select * from uploadimage where type=" + type);
     }
     
-    public static void addUploadImage(int type, String path) {
+    public static int addUploadImage(int type, String path) {
         UploadImage image = UploadImage.dao.findFirst("select * from uploadimage where type="+type+" and path='" + path + "'");
         if(image == null) {
             image = new UploadImage();
@@ -31,6 +33,11 @@ public class UploadImageService {
 //            image.set("path", path);
 //            image.save();
         }
+        return image != null ? image.getInt("id") : 0;
+    }
+    
+    public static void deleteUploadImages(int type) {
+        UploadImage.dao.find("delete from uploadimage where type=" + type);
     }
     
     public static void deleteUploadImage(int id, Controller controller) {
@@ -42,7 +49,11 @@ public class UploadImageService {
     }
     
     public static void loadCompanyImages() {
-        List<UploadImage> list = getUploadImages(UploadImage.TYPE_COMPANY_INFO);
+        loadCompanyImages(UploadImage.TYPE_COMPANY_INFO);
+    }
+    
+    public static void loadCompanyImages(int type) {
+        List<UploadImage> list = getUploadImages(type);
         if(list != null && list.size() != 0) {
             pic_map.clear();
             for (UploadImage uploadImage : list) {
@@ -57,6 +68,12 @@ public class UploadImageService {
         return pic_map.get(Integer.parseInt(id_str));
     }
     
+    public static UploadImage getCompanyImageId(String path) {
+        if(StrKit.isBlank(path))
+            return null;
+        return UploadImage.dao.findFirst("select * from uploadimage where path='" + path + "'");
+    }
+    
     public static String[] getCompanyImagesString(String ids) {
         String[] id_arr = ids.split(",");
         String[] path_arr = new String[id_arr.length];
@@ -69,5 +86,17 @@ public class UploadImageService {
             }
         }
         return path_arr;
+    }
+    
+    public static String getCompanyImagesId(String paths) {
+        String[] path_arr = paths.split(",");
+        Integer[] id_arr = new Integer[path_arr.length];
+        for (int i=0; i< path_arr.length; i++) {
+            UploadImage img = getCompanyImageId(path_arr[i]);
+            if(img != null) {
+                id_arr[i] = img.getInt("id");
+            }
+        }
+        return Utils.join(",", id_arr);
     }
 }

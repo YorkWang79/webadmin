@@ -12,53 +12,55 @@
         </div>
     </div>
     <div class="layui-form-item layui-upload">
-        <button type="button" class="layui-btn" id="company_pics" onclick="load_pic_library(3, 0, '#(company_pics_path)');">选择简介图片</button>
+        <button type="button" class="layui-btn" id="company_pic1">选择简介图片</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
-            <div class="layui-upload-list" id="company_pics_demo">
+            <div class="layui-upload-list" id="company_pic_demo1">
                 #for(p : company_pics)
                 <img src="#(basePath)/upload/#(p)" class="layui-upload-img">
                 #end
             </div>
         </blockquote>
-        <input type="hidden" name="company_pics_ids" id="company_pics_ids" />
+        <input type="hidden" name="company_pic_id1" id="company_pic_id1" />
     </div>
     <div class="layui-upload layui-form-item">
-        <button type="button" class="layui-btn" id="company_pic1" onclick="load_pic_library(2, 1, '#(pic1)');">团队照片1</button>
+        <button type="button" class="layui-btn" id="company_pic2">团队照片1</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
-            <div class="layui-upload-list" id="company_pic1_demo">
+            <div class="layui-upload-list" id="company_pic_demo2">
                 #if(notBlank(pic1))
                 <img src="#(basePath)/upload/#(pic1)" class="layui-upload-img">
                 #end
             </div>
         </blockquote>
-        <input type="hidden" name="company_pic1_id" id="company_pic1_id" />
+        <input type="hidden" name="company_pic_id2" id="company_pic_id2" />
     </div>
     <div class="layui-upload layui-form-item">
-        <button type="button" class="layui-btn" id="company_pic2" onclick="load_pic_library(2, 2, '#(pic2)');">团队照片2</button>
+        <button type="button" class="layui-btn" id="company_pic3">团队照片2</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
-            <div class="layui-upload-list" id="company_pic2_demo">
+            <div class="layui-upload-list" id="company_pic_demo3">
                 #if(notBlank(pic2))
                 <img src="#(basePath)/upload/#(pic2)" class="layui-upload-img">
                 #end
             </div>
         </blockquote>
-        <input type="hidden" name="company_pic2_id" id="company_pic2_id" />
+        <input type="hidden" name="company_pic_id3" id="company_pic_id3" />
     </div>
     <div class="layui-upload">
-        <button type="button" class="layui-btn" id="company_pic3" onclick="load_pic_library(2, 3, '#(pic3)');">团队照片3</button>
+        <button type="button" class="layui-btn" id="company_pic4">团队照片3</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
-            <div class="layui-upload-list" id="company_pic3_demo">
+            <div class="layui-upload-list" id="company_pic_demo4">
                 #if(notBlank(pic3))
                 <img src="#(basePath)/upload/#(pic3)" class="layui-upload-img">
                 #end
             </div>
         </blockquote>
-        <input type="hidden" name="company_pic3_id" id="company_pic3_id" />
+        <input type="hidden" name="company_pic_id4" id="company_pic_id4" />
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="formCompany">保存</button>
+            <!-- 
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+             -->
         </div>
     </div>
 </form>
