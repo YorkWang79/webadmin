@@ -20,8 +20,8 @@ public class CompanyController extends Controller {
             String picsStr = Utils.getArrayString(pics);
             this.setAttr("company_pics_path", picsStr);
             UploadImage pic1 = UploadImageService.getCompanyImage(company.getStr("team_pic1"));
-            System.out.println("pic1 id:" + company.getStr("team_pic1"));
-            System.out.println("pic1:" + pic1);
+//            System.out.println("pic1 id:" + company.getStr("team_pic1"));
+//            System.out.println("pic1:" + pic1);
             if(pic1 != null)
                 this.setAttr("pic1", pic1.get("path"));
             UploadImage pic2 = UploadImageService.getCompanyImage(company.getStr("team_pic2"));

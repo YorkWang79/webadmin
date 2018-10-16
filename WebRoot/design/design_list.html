@@ -10,11 +10,13 @@
     <colgroup>
         <col width="150">
         <col>
-        <col width="150">
+        <col>
+        <col width="250">
     </colgroup>
     <thead>
         <tr>
             <th>标题</th>
+            <th>文字描述</th>
             <th>预览图</th>
             <th>&nbsp;</th>
         </tr>
@@ -23,14 +25,17 @@
         #for(d : designs)
         <tr>
             <td>#(d.title)</td>
+            <td>#(d.desc)</td>
             <td>
-                #for(path : d.paths)
+                #for(path : d.pathArray)
+                    #if(notBlank(path))
                     <img src="#(basePath)/upload/#(path)" class="layui-upload-img">
+                    #end
                 #end
             </td>
             <td>
-                <button class="layui-btn" lay-submit lay-filter="designEdit">编辑</button>
-                <button class="layui-btn" lay-submit lay-filter="designDelete">删除</button>
+                <button class="layui-btn" lay-submit lay-filter="designEdit" onclick="show_design_info(#(year), 'edit', #(d.id));">编辑</button>
+                <button class="layui-btn" lay-submit lay-filter="designDelete" onclick="delete_design(#(d.id), #(year));">删除</button>
             </td>
         </tr>
         #end

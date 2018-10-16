@@ -14,6 +14,8 @@ public class WebsiteRoutes extends Routes {
         add("/design", DesignController.class, "/design");
         
         add("/upload", UploadController.class, "/pics");
+
+        add("/intro", IntroController.class, "/intro");
         /*
         add("/login", LoginController.class, "/login");
         add("/status", MDSStatusController.class, "/status");

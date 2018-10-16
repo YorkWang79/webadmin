@@ -156,6 +156,15 @@ public class Utils {
     }
     
     /**
+     * Get current year
+     * @return
+     */
+    public static int getCurrentYear() {
+        Calendar date = Calendar.getInstance();
+        return date.get(Calendar.YEAR);
+    }
+    
+    /**
      * Get MDS production name
      * @return
      */
@@ -379,10 +388,14 @@ public class Utils {
     public static String getArrayString(String[] arr) {
         StringBuffer sb = new StringBuffer();
         for (String str : arr) {
-            sb.append(str);
-            sb.append(",");
+            if(StrKit.notBlank(str)) {
+                sb.append(str);
+                sb.append(",");
+            }
         }
-        sb.deleteCharAt(sb.length()-1);
+        if(sb.length() > 0) {
+            sb.deleteCharAt(sb.length()-1);
+        }
         return sb.toString();
     }
 }

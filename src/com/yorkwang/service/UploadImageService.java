@@ -1,13 +1,11 @@
 package com.yorkwang.service;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
-import com.jfinal.template.expr.ast.Array;
 import com.yorkwang.model.UploadImage;
 import com.yorkwang.utils.Utils;
 
@@ -15,6 +13,10 @@ public class UploadImageService {
     private static HashMap<Integer, UploadImage> pic_map = new HashMap<Integer, UploadImage>();
     static {
         loadCompanyImages();
+    }
+    
+    public static List<UploadImage> getUploadImages() {
+        return UploadImage.dao.find("select * from uploadimage");
     }
     
     public static List<UploadImage> getUploadImages(int type) {
@@ -49,11 +51,11 @@ public class UploadImageService {
     }
     
     public static void loadCompanyImages() {
-        loadCompanyImages(UploadImage.TYPE_COMPANY_INFO);
-    }
+//        loadCompanyImages(UploadImage.TYPE_COMPANY_INFO);
+//    }
     
-    public static void loadCompanyImages(int type) {
-        List<UploadImage> list = getUploadImages(type);
+//    public static void loadCompanyImages(int type) {
+        List<UploadImage> list = getUploadImages();
         if(list != null && list.size() != 0) {
             pic_map.clear();
             for (UploadImage uploadImage : list) {

@@ -2,32 +2,32 @@
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <input type="hidden" name="year" id="year" value="#(year)" />
+        <input type="hidden" name="design_id" id="design_id" value="#(design.id ??)" />
         <label class="layui-form-label">项目名称</label>
         <div class="layui-input-block">
-            <input type="text" name="design_title" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="#(title)">
+            <input type="text" name="design_title" id="design_title" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="#(design.title ??)">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">项目描述</label>
         <div class="layui-input-block">
-            <textarea name="design_desc" placeholder="" class="layui-textarea">#(desc)</textarea>
+            <textarea name="design_desc" id="design_desc" placeholder="" class="layui-textarea">#(design.desc ??)</textarea>
         </div>
     </div>
     <div class="layui-form-item layui-upload">
-        <button type="button" class="layui-btn" id="design_pics">上传简介图片</button>
+        <button type="button" class="layui-btn" id="design_pic1">上传简介图片</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">预览图：
-            <div class="layui-upload-list" id="design_pics_demo">
-                #for(p : design_pics)
+            <div class="layui-upload-list layui-upload-list-height" id="design_pic_demo1">
+                #for(p : design.pathArray ??)
                 <img src="#(basePath)/upload/#(p)" class="layui-upload-img">
                 #end
             </div>
         </blockquote>
-        <input type="hidden" name="design_pics_ids" id="design_pics_ids" />
+        <input type="hidden" name="design_pic_id1" id="design_pic_id1" />
     </div>
     <div class="layui-form-item">
         <div class="layui-align-center">
             <button class="layui-btn" lay-submit lay-filter="formDesignSave">保存</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
